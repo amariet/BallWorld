@@ -20,7 +20,8 @@ public class BallRunner
     {
         BallWorld ballWorlds = new BallWorld( 200 , 200 );
         TGPoint startPoint = new TGPoint(0 , 0);
-        BallRunner ballBotRunner = new BallRunner(ballWorlds, startPoint, 10);
+        ballBotRunner = new BallRunner(ballWorlds, startPoint, 10);
+       
         boolean manzana = true;
         while(manzana)
         {
@@ -32,7 +33,7 @@ public class BallRunner
                 {
                     ballBotArray[freeBallBotIndex] = new BallBot(ballWorld, entrancePoint, Math.random() * 360, r);
                     ballBotArray[freeBallBotIndex].setPixelsPerSecond((int)(Math.random()*100) + 100);
-                    ballBotArray[freeBallBotIndex].setColor((int)(Math.random()*30));
+                    ballBotArray[freeBallBotIndex].setColor((int)(Math.random()*31));
                 }
             }
             
@@ -48,12 +49,21 @@ public class BallRunner
                     {
                         if(ballBotRunner.ballBotToBounceOff(ballBotArray[index]) != null)
                         {
-                            double trash = ballBotRunner.ballBotToBounceOff(ballBotArray[index].getHeading() - (Math.random()*10 + 200))
-                            double potato = ballBotArray[index].getHeading
+                            double trash = ballBotRunner.ballBotToBounceOff(ballBotArray[index].getHeading() - (Math.random()*10 + 175))
+                            double potato = ballBotArray[index].getHeading() = (Math.random()*10 + 175);
                             // continue to try and fix bugs & complete activity 5
+                            ballBotRunner.ballBotToBounceOff(ballBotArray[index]).setHeading(trash);
+                            // ballBotRunner.ballBotToBounceOff(ballBotArray[index]).setColor((int)(Math.random()*31));
+                            ballBotRunner.ballBotToBounceOff(ballBotArray[index]).moveForward();
+                            ballBotArray[index].setHeading(potato);
+                            ballBotArray[index].moveForward();
                         }
-                        ballBotArray[index].setHeading(Math.random()*360);
-                        ballBotArray[index].moveForward();
+                        else
+                        {
+                            ballBotArray[index].setHeading(Math.random()*360);
+                            ballBotArray[index].moveForward();
+                        }
+                        ballBotArray[index].setColor((int)(Math.random()*31));
                     }
                 }
             }
@@ -98,6 +108,7 @@ public class BallRunner
     {
         TGPoint firstPoint = ballBot.getPoint();
         TGPoint nextPoint = ballBot.forwardPoint();
+        
         for(int i = 0; i < ballBotArray.length; i++)
         {
             if(ballBotArray[i] != null)
